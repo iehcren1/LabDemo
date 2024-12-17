@@ -24,6 +24,7 @@ public class ExtApiService {
 
 		ResponseEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET,
 				new HttpEntity(headers), String.class);
+		logger.info("===response statusCode:{}", response.getStatusCode());
 		logger.info("===response:{}", response.getBody());
 		logger.info("========End doSendExtApiGetResponseData =====");
 		return response;

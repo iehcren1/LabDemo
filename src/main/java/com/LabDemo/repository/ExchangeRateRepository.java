@@ -11,7 +11,13 @@ import java.util.List;
 @Repository
 public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, String> {
 
-	ExchangeRate findByCurrencyAndRateDate(String currency, LocalDate rateDate);
+	/**
+	 * 依照幣別取出最大匯率日期
+	 * @param currency
+	 * @return
+	 */
+	@Query("select max(ex.rateDate) from ExchangeRate ex")
+	LocalDate findMaxRateDateByCurrency(String currency);
 	
 	/**
 	 * 依照幣別與日期區間找出對應的幣別與日期匯率

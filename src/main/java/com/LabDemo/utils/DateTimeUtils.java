@@ -10,13 +10,13 @@ public class DateTimeUtils {
 	 * @param dateStr
 	 * @return
 	 */
-	public static boolean isLegalDate(String dateStr) {
+	public static boolean isLegalDate(String dateStr, String datePattern) {
 		int legalLen = 10;
 		if (dateStr == null || dateStr.length() != legalLen) {
 			return false;
 		}
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(datePattern);
 		
 		try {
 			LocalDate localDate = LocalDate.parse(dateStr, dtf);

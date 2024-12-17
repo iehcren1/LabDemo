@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class ExchangeRateContoller {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExchangeRateContoller.class);
-
+	
 	protected DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
 	@Autowired
@@ -38,7 +38,7 @@ public class ExchangeRateContoller {
 		ReturnModel returnModel = new ReturnModel();
 		
 		// 判斷日期格式是否相符
-		if (!DateTimeUtils.isLegalDate(requestParam.getStartDate()) || !DateTimeUtils.isLegalDate(requestParam.getEndDate())) {
+		if (!DateTimeUtils.isLegalDate(requestParam.getStartDate(), "yyyy/MM/dd") || !DateTimeUtils.isLegalDate(requestParam.getEndDate(), "yyyy/MM/dd")) {
 			returnModel.setCode("E001");
 			returnModel.setMessage("日期格式不符");
 			response.setReturnModel(returnModel);

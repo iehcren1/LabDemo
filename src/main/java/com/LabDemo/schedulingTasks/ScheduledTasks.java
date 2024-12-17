@@ -1,6 +1,7 @@
 package com.LabDemo.schedulingTasks;
 
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 
 import com.LabDemo.service.ExchangeRateService;
@@ -19,8 +20,8 @@ public class ScheduledTasks {
 	@Autowired
 	private ExchangeRateService exchangeRateService;
 
-	@Scheduled(cron="${schedule.update.daily.foreign.exchange.rates.cron.Expression}")	// 每天18:00執行1次
-//	@Scheduled(fixedRate = 600000)	// For Test 每10分鐘執行1次
+//	@Scheduled(cron="${schedule.update.daily.foreign.exchange.rates.cron.Expression}")	// 每天18:00執行1次
+	@Scheduled(fixedRate = 600000)	// For Test 每10分鐘執行1次
 	public void updateDailyForeignExRates() throws URISyntaxException, JsonProcessingException, ParseException {
 		logger.info("===== 執行取得外匯資料Start ====");
 		exchangeRateService.getDailyForeignExRates();
